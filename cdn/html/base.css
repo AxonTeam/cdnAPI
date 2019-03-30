@@ -1,0 +1,45 @@
+html {
+  min-height: 90%;
+  max-height: 90%;
+  padding: 0%;
+}
+body {
+  padding: 0%;
+  background-color: rgb(46, 49, 53);
+  color: rgb(239, 172, 64);
+  text-align: center;
+  min-height: 97vh;
+  font-size: 4vh;
+}
+
+.top {
+  max-height: 10vh;
+  background-color: rgb(74, 72, 79);
+  text-align: left;
+  position: relative;
+  font-size: 100%;
+  top: 0%;
+}
+
+.bigtable {
+  width: 100%;
+  font-size: 3vh;
+  min-height: 70%;
+  border-collapse: collapse;
+  padding: 1%;
+}
+.bigtable th, td {
+  text-align: center;
+  border: 1px solid rgb(239, 172, 64);
+  padding: 1%;
+  min-height: 5%;
+}
+
+footer {
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+  left: 0%;
+  background-color: rgb(74, 72, 79);
+  font-size: 2vh;
+}
