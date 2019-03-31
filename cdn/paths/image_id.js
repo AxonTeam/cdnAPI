@@ -2,7 +2,7 @@ const ImageModel = require('../../models/image');
 const notFound = require('../functions/imageNotFound')
 
 module.exports = () => ({
-    path: '/i/images/:id',
+    path: '/images/:id',
     handler: async (req, res) => {
         const image = await ImageModel.findOne({ ID: req.params.id, type: 'image' }).exec();
         if (!image) {

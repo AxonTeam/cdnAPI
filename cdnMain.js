@@ -121,13 +121,13 @@ for(const path of paths) {
 }
 
 // If they try to go to a invalid path
-app.use('/*', (req, res) => {
+app.all('*', (req, res) => {
     const file = path.join(dir, './cdn/html/notfound.html');
     res.sendFile(file);
 })
 
-const server = http.createServer(app),
-    httpsServer = https.createServer(app);
+const server = http.createServer(app);
 
-server.listen(80);
-httpsServer.listen(443);
+const port = config.port || 80;
+
+server.listen(port);

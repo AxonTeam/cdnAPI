@@ -30,3 +30,5 @@ When requesting, if you want to upload/delete a banner or a logo, you specify th
 # Config keys/values
 
 - `url` - Defines the URL to return when a image or screenshot was successfully uploaded.
+
+- `port` - What port you are going to listen to
