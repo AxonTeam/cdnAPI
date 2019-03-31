@@ -6,7 +6,7 @@ const ImageModel = require('../../models/image');
 const config = require('../../config.json');
 const randomID = require('../functions/randomID');
 const url = config.url || 'cdn.axonteam.org';
-const typeReg = /logo|banner/;
+const typeReg = /logo|banner|image/;
 const nameReg = /\.|\||<|>|\?|\*/;
 
 module.exports = dir => ({
@@ -33,12 +33,21 @@ module.exports = dir => ({
             type = req.body.type;
         }
         const id = req.body.name || await randomID();
+        const img = await ImageModel.findOne({ ID: id, type }).exec()
+        if (img) {
+            let text = 'ID already used! Try again.';
+            if (req.body.name && req.body.name === type) {
+                text = 'ID already used! Try again with a different ID.';
+            }
+            res.send(text);
+            return res.end();
+        }
         let image = await new ImageModel({ ID: id, type, uploaderID: uID, link: result.body }); // Save to database
         image = await image.save();
         if (!image) {
             return res.send('Error while adding to database!');
         }
-        res.send(`${url}/${type}/${id}`);
+        res.send(`${url}/${type}s/${id}`);
         res.end();
     },
     method: 'post',

@@ -16,6 +16,11 @@ module.exports = dir => ({
             return res.status(206).send('Missing image buffer!');
         }
         const id = await randomID();
+        const img = await ImageModel.findOne({ ID: id, type: 'screenshot' }).exec()
+        if (img) {
+            res.send('ID already used! Try again');
+            return res.end();
+        }
         const result = await request.get(req.body.buffer);
         let image = await new ImageModel({ ID: id, type: 'screenshot', uploaderID: uID, link: result.body }); // Save to database
         image = await image.save();
