@@ -9,6 +9,7 @@ const express = require('express'),
     bodyparser = require('body-parser');
     
 const checkHash = require('./token/checkHash');
+const config = require('./config.json');
 // Clients
 const app = express();
 
