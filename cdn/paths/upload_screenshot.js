@@ -1,4 +1,3 @@
-console.log('Recived POST request to api/screenshots');
 const randomID = require('../functions/randomID');
 const request = require('superagent')
 const ImageModel = require('../../models/image');
@@ -27,6 +26,7 @@ module.exports = dir => ({
         if (!image) {
             return res.send('Error while adding to database!');
         }
+        console.log(`API UPLOAD | Screenshot ${id} uploaded by ${uID}!`)
         res.send(`${url}/screenshots/${id}`);
         res.end();
     },

@@ -6,10 +6,15 @@ const ImageModel = require('../../models/image');
 const config = require('../../config.json');
 const randomID = require('../functions/randomID');
 const url = config.url || 'cdn.axonteam.org';
-const typeReg = /logo|banner|image/;
 const nameReg = /\.|\||<|>|\?|\*/;
 
-module.exports = dir => ({
+const typeArr = [
+    'banner',
+    'logo',
+    'image'
+]
+
+module.exports = () => ({
     path: '/api/images',
     handler: async (req, res) => {
         let type = 'image';
@@ -26,7 +31,7 @@ module.exports = dir => ({
         }
         const result = await request.get(req.body.buffer);
         if (req.body && req.body.type) {
-            if (!typeReg.test(req.body.type)) {
+            if (!typeArr.includes(req.body.type)) {
                 res.send('ERROR - Invalid type');
                 return res.end();
             }
@@ -47,6 +52,7 @@ module.exports = dir => ({
         if (!image) {
             return res.send('Error while adding to database!');
         }
+        console.log(`API UPLOAD | ${type} ${id} uploaded by ${uID}`)
         res.send(`${url}/${type}s/${id}`);
         res.end();
     },

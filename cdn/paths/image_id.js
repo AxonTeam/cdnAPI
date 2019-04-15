@@ -2,11 +2,11 @@ const ImageModel = require('../../models/image');
 const notFound = require('../functions/imageNotFound')
 
 module.exports = () => ({
-    path: '/images/:id',
+    path: ['/images/:id', '/i/:id'],
     handler: async (req, res) => {
         const image = await ImageModel.findOne({ ID: req.params.id, type: 'image' }).exec();
         if (!image) {
-            return notFound(dir, res);
+            return notFound(res);
         }
         const link = new Buffer.from(image.link, 'base64');
         res.writeHead(200, {

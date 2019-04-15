@@ -17,6 +17,7 @@ module.exports = () => ({
             res.send('ERROR - Failed to delete');
             return res.end();
         }
+        console.log(`API DELETE | Screenshot ${req.params.id} deleted by ${req.headers.uid}`)
         res.status(200).send('SUCCESS - Deleted image!');
         res.end();
     },
