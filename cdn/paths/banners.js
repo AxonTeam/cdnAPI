@@ -10,7 +10,6 @@ module.exports = (dir) => ({
         }
         const link = new Buffer.from(image.link, 'base64');
         res.writeHead(200, {
-            'Content-Type': 'image/png',
             'Content-Length': link.length
         });
         res.end(link);

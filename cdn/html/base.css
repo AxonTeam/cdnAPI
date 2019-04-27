@@ -30,7 +30,9 @@ body {
 }
 .bigtable th, td {
   text-align: center;
-  border: 1px solid rgb(239, 172, 64);
+  /* border: 1px solid rgb(239, 172, 64); */
+  border-top: 1px solid rgb(239, 172, 64);
+  border-bottom: 1px solid rgb(239, 172, 64);
   padding: 1%;
   min-height: 5%;
 }
@@ -42,4 +44,12 @@ footer {
   left: 0%;
   background-color: rgb(74, 72, 79);
   font-size: 2vh;
+}
+
+a:visited {
+  color: rgb(196, 133, 33);
+}
+
+a:hover {
+  color: rgb(255, 156, 0);
 }

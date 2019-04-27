@@ -1,13 +1,17 @@
 const ImageModel = require('../../models/image');
 
-const typeReg = /logo|banner/;
+const typeArr = [
+    'image',
+    'logo',
+    'banner'
+]
 
 module.exports = dir => ({
     path: '/api/images/:id',
     handler: async (req, res) => {
         let type = 'image'
         if (req.body && req.body.type) {
-            if (!typeReg.test(req.body.type)) {
+            if (!typeArr.includes(req.body.type)) {
                 res.send('ERROR - Invalid type');
                 return res.end();
             }

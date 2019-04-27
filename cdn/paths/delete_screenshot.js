@@ -8,7 +8,7 @@ module.exports = () => ({
             res.send('ERROR - No screenshot found!');
             return res.end();
         }
-        if (img.uploaderID !== req.headers.uid) {
+        if (img.uploaderID !== req.headers.uid && req.headers.id !== 'root') {
             res.send('ERROR - Restricted access!');
             return res.end();
         }

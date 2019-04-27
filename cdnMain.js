@@ -12,9 +12,14 @@ const config = require('./config.json');
 // Clients
 const app = express();
 
+app.use(express.static(path.join(__dirname, './cdn/html')));
+
 app.use(bodyparser.json());
 
-mongoose.connect('mongodb://localhost/AxonTeam', {
+const baseMongoURL = 'mongodb://';
+const mongoURL = baseMongoURL + (config.mongoURL || 'localhost/AxonTeam');
+
+mongoose.connect(mongoURL, {
     useCreateIndex: true,
     autoReconnect: true,
     useNewUrlParser: true
@@ -90,8 +95,8 @@ app.use('/api/screenshots/*', async (req, res, next) => {
 
 
 // Initalize a cdn path
-function init(path) {
-    const file = require(`./cdn/paths/${path}`)(dir);
+function init(cdnpath) {
+    const file = require(`./cdn/paths/${cdnpath}`)(dir);
     if (!file || !file.path || !file.handler) {
         return null;
     }
@@ -128,8 +133,8 @@ function init(path) {
 }
 
 // Initalize all cdn paths
-for(const path of paths) {
-    init(path)
+for(const cdnpath of paths) {
+    init(cdnpath)
 }
 
 // If they try to go to a invalid path

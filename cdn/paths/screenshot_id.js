@@ -2,7 +2,7 @@ const ImageModel = require('../../models/image');
 const notFound = require('../functions/imageNotFound')
 
 module.exports = () => ({
-    path: ['/screenshots/:id', '/ss/:id'],
+    path: ['/screenshots/:id', '/s/:id'],
     handler: async (req, res) => {
         const image = await ImageModel.findOne({ ID: req.params.id, type: 'screenshot' }).exec();
         if (!image) {
@@ -10,7 +10,7 @@ module.exports = () => ({
         }
         const link = new Buffer.from(image.link, 'base64');
         res.writeHead(200, {
-            'Content-Type': 'image/png',
+            'Content-Type': `image/${image.ext || 'png'}`,
             'Content-Length': link.length
         });
         res.end(link);
