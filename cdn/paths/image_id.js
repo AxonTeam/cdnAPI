@@ -23,11 +23,8 @@ module.exports = () => ({
                 head['content-Type'] = `image/${query.ext}`;
             }
         }
-        console.log(res.contentType);
         res.set(head);
-        console.log(res)
         res.end(link);
-        console.log(res);
     },
     enabled: true,
 });

@@ -38,7 +38,6 @@ const paths = fs.readdirSync('./cdn/paths');
 // ROOT checker, images are restricted to ROOT (or nucleus)
 app.use('/api/images/', async(req, res, next) => {
     if (!req.headers.id || !req.headers.id.match(/root|Nucleus/)) {
-        console.log('API/IMAGES - Invalid ID');
         res.status(401).send('Unauthorized');
         return res.end();
     }
@@ -52,7 +51,6 @@ app.use('/api/images/', async(req, res, next) => {
 
 app.use('/api/images/*', async (req, res, next) => {
     if (!req.headers.id || !req.headers.id.match(/root|Nucleus/)) {
-        console.log('API/IMAGES - Invalid ID');
         res.status(401).send('Unauthorized');
         return res.end();
     }

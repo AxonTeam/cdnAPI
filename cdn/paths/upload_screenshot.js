@@ -35,7 +35,6 @@ module.exports = () => ({
             res.send('ID already used! Try again');
             return res.end();
         }
-        console.log(req.body.buffer)
         let result = bufferType === 'url' ? await request.get(req.body.buffer) : req.body.buffer;
         if (bufferType === 'url') {
             if (!result) {

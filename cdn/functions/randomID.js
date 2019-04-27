@@ -1,13 +1,14 @@
 const Crypto = require('crypto');
+const idChecker = require('./idChecker');
 
 /**
  * Generates a random ID
- * 
+ *
  * @param {String} type The type of image to generate a id for
  */
 async function randomID() {
     let id = generator();
-    while (id.match(/\/|\\/) === false) {
+    while (!idChecker(id)) {
         id = generator();
     }
     return id;

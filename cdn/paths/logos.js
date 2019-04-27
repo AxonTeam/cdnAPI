@@ -10,7 +10,6 @@ module.exports = () => ({
             query.ID = full[0];
             query.ext = full[1];
         }
-        console.log(query)
         const image = await ImageModel.findOne(query).exec();
         if (!image) {
             return res.sendFile(path.join(__dirname, '../../assets/red_axonteam_logo.png'))
@@ -19,7 +18,6 @@ module.exports = () => ({
         const head = { 'content-length': link.length };
         res.set(head);
         res.end(link);
-        console.log(res.rawHeaders)
     },
     enabled: true,
     method: 'get'
